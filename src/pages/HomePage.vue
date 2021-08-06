@@ -1,6 +1,8 @@
 <template>
   <div class="col-8">
-    <CreatePost />
+    <div class="" v-if="user.isAuthenticated">
+      <CreatePost />
+    </div>
     <PostThread :posts="posts" />
   </div>
   <div class="col-3">
@@ -12,6 +14,7 @@
 </template>
 
 <script>
+import { AuthService } from '../services/AuthService'
 import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
@@ -29,7 +32,14 @@ export default {
       }
     })
     return {
-      ads: computed(() => AppState.ads)
+      user: computed(() => AppState.user),
+      ads: computed(() => AppState.ads),
+      async login() {
+        AuthService.loginWithPopup()
+      },
+      async logout() {
+        AuthService.logout({ returnTo: window.location.origin })
+      }
     }
   }
 }
