@@ -2,13 +2,13 @@
   <div class="col-12 mt-2 shadow-light bg-gray border border-light d-flex flex-column align-items-start rounded">
     <div class="row">
       <div class="col">
-        <h3>Welcome, {{ user.nickname }} !</h3>
-        <p>Bio: {{ account.bio }}</p>
+        <h3>Welcome, {{ profile.nickname }} !</h3>
+        <p>Bio: {{ profile.bio }}</p>
       </div>
       <div class="row m-1">
         <div class="col">
           <h5>Find me on</h5>
-          <div v-if="account.linkedin">
+          <div v-if="profile.linkedin">
             <a href="https://www.linkedin.com/">LinkedIn</a>
           </div>
         </div>
@@ -17,18 +17,18 @@
     <div class="row m-2">
       <div class="col">
         <img
-          :src="account.coverImg"
+          :src="profile.picture"
           alt="user photo"
           height="100"
           class="rounded-50"
         />
-        <span class="mx-3">{{ user.name }}</span>
+        <span class="mx-3">{{ profile.name }}</span>
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <h5>CodeWorks Cohort: {{ account.class }}</h5>
-        <div v-if="account.graduated==true">
+        <h5>CodeWorks Cohort: {{ profile.class }}</h5>
+        <div v-if="profile.graduated==true">
           <h5>Graduated!</h5>
         </div>
       </div>
@@ -45,12 +45,13 @@
         <h5 class="mx-2">
           Received Likes:    1
         </h5>
-        <div class="pr-5 action" data-toggle="modal" data-target="#edit-account">
+        <div class="pr-5 action" v-if="account.email === profile.email" data-toggle="modal" data-target="#edit-account">
           <span>✏ <small>Edit</small></span>
         </div>
       </div>
     </div>
   </div>
+  <!-- NOTE above I attempted to get the profile component working by creating an empty object in appstate called profile.  I then tried to connect all profiles properties above, but it is still not working - still getting a missing required id param error. -->
   <!-- Modal -->
   <div class="modal fade"
        id="edit-account"
@@ -136,12 +137,12 @@ import { AppState } from '../AppState'
 export default {
   name: 'ProfileComponent',
   setup() {
-    // const router = useRoute()
+    const router = useRoute()
 
     return {
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account)
-      // account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      profile: computed(() => AppState.profile)
     }
   }
 }

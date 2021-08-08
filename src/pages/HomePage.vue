@@ -6,31 +6,18 @@
     <PostThread :posts="posts" />
   </div>
   <div class="col-3">
-    <div class="">
-      <h3>These will be Ads</h3>
-      {{ ads }}
-    </div>
+    <AdThread :ads="ads" />
   </div>
 </template>
 
 <script>
 import { AuthService } from '../services/AuthService'
-import { computed, onMounted } from '@vue/runtime-core'
+import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
-import Pop from '../utils/Notifier'
-import { adsService } from '../services/AdsService'
-import { postsService } from '../services/PostsService'
 
 export default {
   name: 'Home',
   setup() {
-    onMounted(async() => {
-      try {
-        await adsService.getAds()
-      } catch (error) {
-        console.error(error)
-      }
-    })
     return {
       user: computed(() => AppState.user),
       ads: computed(() => AppState.ads),

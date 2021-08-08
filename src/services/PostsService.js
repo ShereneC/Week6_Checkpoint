@@ -1,11 +1,12 @@
 import { data } from 'jquery'
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
+import { convertToQuery } from '../utils/Query'
 import { api } from './AxiosService'
 
 class PostsService {
-  async getPosts() {
-    const res = await api.get('api/posts')
+  async getPosts(query = {}) {
+    const res = await api.get('api/posts' + convertToQuery(query))
     logger.log(res.data.posts)
     AppState.posts = res.data.posts
   }
