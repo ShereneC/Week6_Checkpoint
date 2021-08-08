@@ -1,15 +1,16 @@
 <template>
-  <div class="CreatePost col-12 mt-2 shadow-light bg-gray border border-light d-flex flex-column align-items-center rounded">
-    <form @submit.prevent="createPost">
+  <div class="CreatePost col-12 mt-2 p-2 shadow-light bg-gray border border-light rounded">
+    <form class="flex-column" @submit.prevent="createPost">
+      <!-- NOTE Having bootstrap issues here as well, why will the textarea not spread out to the edge of the column? -->
       <div class="form-group">
         <label class="pr-2" for="body">Body</label>
-        <input type="text"
-               id="body"
-               class="form-control"
-               required
-               placeholder="What would you like to talk about?..."
-               v-model="state.newPost.body"
-        >
+        <textarea type="textarea"
+                  id="body"
+                  class="form-control"
+                  required
+                  placeholder="What would you like to talk about?..."
+                  v-model="state.newPost.body"
+        ></textarea>
       </div>
       <div class="form-group">
         <label class="pr-2" for="imgUrl">Cover Image</label>

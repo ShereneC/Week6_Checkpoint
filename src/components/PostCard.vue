@@ -3,6 +3,7 @@
     {{ post.body }}
     <img class="cover-img w-50" :src="post.imgUrl" alt="" srcset="">
     <p> likeIds:{{ post.likeIds }}</p>
+    <p>creatorIds: {{ post.creatorId }}</p>
     <div class="align-self-end" v-if="account.id === post.creatorId">
       <button class="btn btn-danger" @click.stop="destroy">
         delete

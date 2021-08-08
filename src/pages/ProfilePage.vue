@@ -1,5 +1,8 @@
 <template>
   <div class="col-8 profile-page">
+    <div class="row">
+      <ProfileComponent />
+    </div>
     <div class="row" v-if="account.email === user.email">
       <CreatePost />
     </div>
@@ -9,16 +12,16 @@
   </div>
   <div class="col-3">
     <div class="">
-      <h3>These will be Ads</h3>
+      <h3>User starts here</h3>
       {{ user }}
-      <h1>account starts here</h1>
+      <h3>Account starts here</h3>
       {{ account }}
     </div>
   </div>
 </template>
 
 <script>
-import { AuthService } from '../services/AuthService'
+// import { AuthService } from '../services/AuthService'
 import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostsService'
 import Pop from '../utils/Notifier'
