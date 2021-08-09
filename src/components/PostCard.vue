@@ -7,9 +7,18 @@
       <img class="cover-img w-50" :src="post.imgUrl" alt="" srcset="">
     </div>
     <div class="row">
-      <p> likeIds:{{ post.likeIds }}</p>
+      <div class="col-12 d-flex" v-if="post.likeIds.length">
+        <h4>Likes:</h4>
+        <span v-for="(l, index) in post.likeIds" :key="index" :likeId="l">👍</span>
+      </div>
     </div>
-
+    <div class="row">
+      <div class="col">
+        <p @click="addLike">
+          Add Like
+        </p>
+      </div>
+    </div>
     <div class="row">
       <div class="col-12 d-flexj justify-content-between">
         <p class="m-1">
@@ -34,7 +43,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostsService'
@@ -47,7 +56,9 @@ export default {
     }
   },
   setup(props) {
+    const state = reactive
     return {
+      state,
       account: computed(() => AppState.account),
       async destroy() {
         try {
