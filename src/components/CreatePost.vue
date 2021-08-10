@@ -1,5 +1,5 @@
 <template>
-  <div class="CreatePost col-12 mt-2 p-2 shadow-light bg-gray border border-light rounded">
+  <div class="CreatePost col-12 shadow-light bg-gray border border-light rounded">
     <form class="flex-column" @submit.prevent="createPost">
       <!-- NOTE Having bootstrap issues here as well, why will the textarea not spread out to the edge of the column? -->
       <div class="form-group">

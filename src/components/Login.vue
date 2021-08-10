@@ -11,23 +11,24 @@
 
       <div class="dropdown" v-else>
         <div
-          class="dropdown-toggle"
+          class="dropdown-toggle d-flex flex-column justify-content-center"
           @click="state.dropOpen = !state.dropOpen"
         >
           <img
             :src="user.picture"
             alt="user photo"
             height="40"
+            width="40"
             class="rounded"
           />
-          <span class="mx-3">{{ user.name }}</span>
+          <p class="mx-3">{{ user.name }}</p>
         </div>
         <div
           class="dropdown-menu p-0 list-group w-100"
           :class="{ show: state.dropOpen }"
           @click="state.dropOpen = false"
         >
-          <router-link :to="{ name: 'ProfilePage', params: {id: account.id} }">
+          <router-link :to="{ name: 'Account', params: {id: account.id} }">
             <div class="list-group-item list-group-item-action hoverable">
               Account
             </div>

@@ -1,11 +1,11 @@
 <template>
-  <div class="col-8 p-2">
+  <div class="col-8 d-flex flex-column">
     <div class="row" v-if="user.isAuthenticated">
       <CreatePost />
     </div>
     <PostThread :posts="posts" />
   </div>
-  <div class="col-3">
+  <div class="col-4">
     <AdThread :ads="ads" />
   </div>
 </template>

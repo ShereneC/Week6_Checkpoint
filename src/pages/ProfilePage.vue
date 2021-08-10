@@ -38,7 +38,7 @@ export default {
     onMounted(async() => {
       try {
         // NOTE why is this in here, I think it should be in profile.vue / well, actuallyl I made a thread
-        await profileService.getProfileById(router.params.id)
+        await profileService.getProfileById({ id: router.params.id })
         await postsService.getPostById(router.params.id)
         await postsService.getPosts({ creatorId: router.params.id })
       } catch (error) {
@@ -54,8 +54,8 @@ export default {
     return {
       user: computed(() => AppState.user),
       account: computed(() => AppState.account),
-      posts: computed(() => AppState.posts)
-      // profile: computed(() => AppState.profile)
+      posts: computed(() => AppState.posts),
+      profile: computed(() => AppState.profile)
     }
   }
 }

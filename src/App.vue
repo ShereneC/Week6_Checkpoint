@@ -2,10 +2,10 @@
   <main>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-3 bg-dark">
+        <div class="col-md-2 bg-dark">
           <Login />
         </div>
-        <div class="col-md-9 m-0">
+        <div class="col-md-10 m-0">
           <div class="row">
             <Navbar />
           </div>

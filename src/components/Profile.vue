@@ -129,28 +129,33 @@
 </template>
 
 <script>
-import { computed, reactive } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import { profileService } from '../services/ProfileService'
+import { useRoute } from 'vue-router'
 export default {
-  props: {
-    profile: {
-      type: Object,
-      required: true
-    }
-  },
-  setup(props) {
-    const state = reactive
-    // onMounted(async() => {
-    //   try {
-    //     await profileService.getProfileById(props.profile.id)
-    //   } catch (error) {
-    //     console.error(error)
-    //   }
-    // })
+  // props: {
+  //   profile: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
+  setup() {
+    //  const state = reactive
+    const router = useRoute()
+
+    onMounted(async() => {
+      try {
+        // NOTE I think i need to pass the profile id through the router into the service right here.  IT is put up there from the click on the PostCard
+        // But I am getting a 400 error There is an array object object in the url address it is trying to go to.
+        await profileService.getProfileById(router.params.id)
+      } catch (error) {
+        console.error(error)
+      }
+    })
     return {
-      state,
       account: computed(() => AppState.account),
+      // If i try and use this it tells me I have a duplicate because of the prop I sent in.
       profile: computed(() => AppState.profile)
     }
   }

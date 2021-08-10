@@ -1,7 +1,9 @@
 <template>
-  <div class="col-12 mt-2 shadow-light bg-gray border border-light d-flex flex-column align-items-center rounded">
+  <div class="col-12 shadow-light bg-gray border border-light d-flex flex-column align-items-center rounded">
     <div class="row">
-      {{ post.body }}
+      <div class="col">
+        {{ post.body }}
+      </div>
     </div>
     <div class="row justify-content-center">
       <img class="cover-img w-50" :src="post.imgUrl" alt="" srcset="">
@@ -24,6 +26,7 @@
         <p class="m-1">
           Posted by:
         </p>
+
         <router-link router-link
                      :to="{ name: 'ProfilePage', params: {id: post.creatorId } }"
                      class="p-3
