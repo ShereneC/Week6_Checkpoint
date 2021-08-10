@@ -99,7 +99,7 @@
                      class="form-control"
                      required
                      placeholder="Url..."
-                     v-model="account.coverImg"
+                     v-model="account.linkedin"
               >
             </div>
             <!-- <div class="form-group">
@@ -129,22 +129,32 @@
 </template>
 
 <script>
-import { AuthService } from '../services/AuthService'
-import { computed } from '@vue/runtime-core'
-import Pop from '../utils/Notifier'
-import { useRoute } from 'vue-router'
+import { computed, reactive } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { profileService } from '../services/ProfileService'
 export default {
-  name: 'ProfileComponent',
-  setup() {
-    const router = useRoute()
-
+  props: {
+    profile: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const state = reactive
+    // onMounted(async() => {
+    //   try {
+    //     await profileService.getProfileById(props.profile.id)
+    //   } catch (error) {
+    //     console.error(error)
+    //   }
+    // })
     return {
-      user: computed(() => AppState.user),
+      state,
       account: computed(() => AppState.account),
       profile: computed(() => AppState.profile)
     }
   }
+
 }
 </script>
 

@@ -24,7 +24,11 @@
         <p class="m-1">
           Posted by:
         </p>
-        <router-link router-link :to="{ name: 'Profile', params: {id: post.creator.id } }" class="p-3 align-self-end">
+        <router-link router-link
+                     :to="{ name: 'ProfilePage', params: {id: post.creatorId } }"
+                     class="p-3
+        align-self-end"
+        >
           <img
             :src="post.creator.picture"
             alt="user photo"
@@ -59,6 +63,7 @@ export default {
     const state = reactive
     return {
       state,
+      posts: computed(() => AppState.posts),
       account: computed(() => AppState.account),
       async destroy() {
         try {
@@ -66,6 +71,13 @@ export default {
             await postsService.destroy(props.post.id)
             Pop.toast('It is gone!', 'success')
           }
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      },
+      async addLike() {
+        try {
+          await postsService.addLike(props.post.id)
         } catch (error) {
           Pop.toast(error, 'error')
         }

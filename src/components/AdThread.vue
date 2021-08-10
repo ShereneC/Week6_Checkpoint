@@ -1,9 +1,11 @@
 <template>
-  <div class="col-12">
-    <AdCard v-for="(a, index) in ads"
-            :key="index"
-            :ad="a"
-    />
+  <div class="row">
+    <div class="col-12 d-flex flex-column">
+      <AdCard v-for="(a, index) in ads"
+              :key="index"
+              :ad="a"
+      />
+    </div>
   </div>
 </template>
 

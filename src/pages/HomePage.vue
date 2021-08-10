@@ -1,6 +1,6 @@
 <template>
-  <div class="col-8">
-    <div class="" v-if="user.isAuthenticated">
+  <div class="col-8 p-2">
+    <div class="row" v-if="user.isAuthenticated">
       <CreatePost />
     </div>
     <PostThread :posts="posts" />

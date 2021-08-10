@@ -1,8 +1,8 @@
 <template>
   <!-- NOTE having difficulties getting the navbar to stretch out to take up its full row -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row align-self-stretch">
+  <nav class="col-12 navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-column align-self-stretch">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column mr-auto">
+      <div class="d-flex">
         <!-- <img
           alt="logo"
           src="../assets/img/cw-logo.png"

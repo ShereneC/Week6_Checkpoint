@@ -12,7 +12,7 @@ class PostsService {
   }
 
   async getPostById(id) {
-    const res = await api.get(`api/posts/${id}`)
+    const res = await api.get(`api/profiles/${id}`)
     AppState.activePost = res.data
   }
 
@@ -25,6 +25,10 @@ class PostsService {
   async destroy(id) {
     await api.delete(`api/posts/${id}`)
     AppState.posts = AppState.posts.filter(post => post.id !== id)
+  }
+
+  async addLike(id) {
+    await api.post((`api/posts/${id}/like`))
   }
 }
 
