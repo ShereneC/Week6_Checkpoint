@@ -3,7 +3,7 @@
     <div class="row" v-if="user.isAuthenticated">
       <CreatePost />
     </div>
-    <PostThread :posts="posts" />
+    <PostThread />
   </div>
   <div class="col-4">
     <AdThread :ads="ads" />

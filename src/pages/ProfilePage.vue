@@ -3,7 +3,7 @@
     <div class="row">
       <ProfileThread :profile="profile" />
     </div>
-    <div class="row" v-if="account.email === user.email">
+    <div class="row" v-if="account.id === profile.id">
       <CreatePost />
     </div>
     <div class="row">
@@ -34,13 +34,13 @@ import { profileService } from '../services/ProfileService'
 export default {
   name: 'ProfilePage',
   setup() {
-    const router = useRoute()
+    const route = useRoute()
     onMounted(async() => {
       try {
         // NOTE why is this in here, I think it should be in profile.vue / well, actuallyl I made a thread
-        await profileService.getProfileById({ id: router.params.id })
-        await postsService.getPostById(router.params.id)
-        await postsService.getPosts({ creatorId: router.params.id })
+        await profileService.getProfileById(route.params.id)
+        await postsService.getPostById(route.params.id)
+        await postsService.getPosts({ creatorId: route.params.id })
       } catch (error) {
         Pop.toast(error, 'error')
       }
@@ -52,7 +52,6 @@ export default {
       // }
     })
     return {
-      user: computed(() => AppState.user),
       account: computed(() => AppState.account),
       posts: computed(() => AppState.posts),
       profile: computed(() => AppState.profile)

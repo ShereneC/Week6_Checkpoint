@@ -12,12 +12,12 @@ class AccountService {
     }
   }
 
-  async editAccount(id, bio) {
+  async editAccount(newAccount) {
     try {
-      const res = await api.put('/account' + id, bio)
+      const res = await api.put('/account', newAccount)
       AppState.account = res.data
       // eslint-disable-next-line no-self-assign
-      AppState.account = AppState.account
+      logger.log(res.data)
     } catch (error) {
       logger.error('Not editing the account')
     }
