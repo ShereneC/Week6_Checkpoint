@@ -7,7 +7,17 @@ import { api } from './AxiosService'
 class PostsService {
   async getPosts(query = {}) {
     const res = await api.get('api/posts' + convertToQuery(query))
+    AppState.newer = res.data.newer
+    AppState.older = res.data.older
+    AppState.posts = res.data.posts
+  }
+
+  async getOlder(olderUrl) {
+    const res = await api.get(olderUrl)
     logger.log(res.data.posts)
+    logger.log(res.data.older)
+    AppState.newer = res.data.newer
+    AppState.older = res.data.older
     AppState.posts = res.data.posts
   }
 
@@ -33,6 +43,16 @@ class PostsService {
     const updatedPost = res.data
     const oldPostIndex = AppState.posts.findIndex(p => p.id === id)
     AppState.posts.splice(oldPostIndex, 1, updatedPost)
+  }
+
+  async searchFor(searchTerm) {
+    try {
+      const res = await api.get('api/posts?query=' + searchTerm)
+      logger.log(res.data.posts)
+      AppState.posts = res.data.posts
+    } catch (error) {
+      logger.log(error)
+    }
   }
 }
 

@@ -1,6 +1,16 @@
 <template>
-  <div class="col-12">
-    <PostCard v-for="p in posts" :key="p.id" :post="p" />
+  <div class="row">
+    <div class="col-12 d-flex">
+      <button type="button" class="btn btn-primary" @click="getNewer" v-if="newer">
+        Most Recent Posts
+      </button>
+      <button type="button" class="btn btn-primary" @click="getOlder" v-if="older">
+        Older Posts
+      </button>
+    </div>
+    <div class="col-12" v-if="posts">
+      <PostCard v-for="p in posts" :key="p.id" :post="p" />
+    </div>
   </div>
 </template>
 
@@ -14,13 +24,19 @@ export default {
   setup() {
     onMounted(async() => {
       try {
-        await postsService.getPosts()
+        await postsService.getPosts(AppState.older)
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
     return {
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      newer: computed(() => AppState.newer),
+      older: computed(() => AppState.older),
+
+      async getOlder() {
+        await postsService.getOlder(AppState.older)
+      }
     }
   }
 

@@ -1,12 +1,18 @@
 <template>
-  <div class="col-8 d-flex flex-column">
-    <div class="row" v-if="user.isAuthenticated">
-      <CreatePost />
+  <div class="col-12">
+    <div class="row">
+      <div class="col-12" v-if="user.isAuthenticated">
+        <CreatePost />
+      </div>
     </div>
-    <PostThread />
-  </div>
-  <div class="col-4">
-    <AdThread :ads="ads" />
+    <div class="row">
+      <div class="col-8 d-flex">
+        <PostThread />
+      </div>
+      <div class="col-4">
+        <AdThread :ads="ads" />
+      </div>
+    </div>
   </div>
 </template>
 

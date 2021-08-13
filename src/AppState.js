@@ -9,7 +9,7 @@ export const AppState = reactive({
   // Essentially just an account - but whoever you're currently looking at.  When you're looking at someone's profile - you see their account stuff, not user stuff.
   profile: {},
   posts: [],
-  older: '',
-  newer: '',
+  older: {},
+  newer: null,
   ads: []
 })

@@ -40,6 +40,12 @@
           </router-link>
         </li>
       </ul>
+      <form @submit.prevent="searchFor">
+        <input name="Search" type="text" placeholder="Search for..." aria-label="Search" v-model="state.searchTerm">
+        <button type="submit" class="btn btn-primary">
+          Search
+        </button>
+      </form>
     </div>
   </nav>
 </template>
@@ -48,10 +54,12 @@
 import { AuthService } from '../services/AuthService'
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
+import { postsService } from '../services/PostsService'
 export default {
   setup() {
     const state = reactive({
-      dropOpen: false
+      dropOpen: false,
+      searchTerm: ''
     })
     return {
       state,
@@ -61,6 +69,9 @@ export default {
       },
       async logout() {
         AuthService.logout({ returnTo: window.location.origin })
+      },
+      async searchFor() {
+        await postsService.searchFor(state.searchTerm)
       }
     }
   }
